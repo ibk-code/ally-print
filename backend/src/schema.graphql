@@ -1,0 +1,50 @@
+type  Query {
+  homeItems: [Item!]!
+}
+
+type Mutation {
+  createitem(img: String!, pname: String!, pdetails: String!, price: Int, pcs: Int, favourite: Boolean!): [Item!]!
+  signup(name: String!, email: String!, password: String!): AuthPayLoad
+  login(email: String!, password: String!): AuthPayLoad
+}
+
+type Item {
+  id: ID!
+  img: String!
+  pname: String!
+  pdetails: String!
+  price: Int!
+  pcs: Int!
+  favourite: Boolean!
+}
+
+type User {
+  id: ID! 
+  name: String!
+  email: String!
+  password: String!
+  liked: [Item!]
+  cart: [Cart!]
+  ordered: [Orders!]
+}
+
+type Cart {
+  id: ID!
+  product: Item!
+  orderedBy: User!
+  quantity: Int!
+  totalPrice: Int
+}
+
+type Orders {
+  id: ID
+  product: Cart!
+  paymentMethod: String!
+  delvyDate: String!
+  productStatus: String!
+}
+
+type AuthPayLoad {
+  token: String!
+  user: User!
+}

@@ -1,0 +1,173 @@
+$colour: #ed6e2e;
+$colour2: #847a7a;
+@import "home";
+@import "login";
+.p-colour{
+  color: $colour !important;
+}
+.p-color-2{
+  color: $colour2;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  .loaderelem {
+    font-size: 60px;
+    color: #eeeeee;
+    font-weight: 600;
+  }
+  .loaderanimation{
+    animation-name: colorchange;
+    animation-duration: 1s;
+    /* animation-iteration-count: infinite; */
+  }
+}
+@keyframes colorchange{
+  0%{
+      color: #eeeeee;
+  }
+  25%{
+      color: #cacaca;
+  }
+  50%{
+      color: #a5a3a3;
+  }
+  75%{
+      color: #a1a1a1;
+  }
+  100%{
+      color: #ed6e2e;
+  }
+}
+.d-margin{
+  margin-top: 8rem !important;
+}
+.social-media{
+  .socialmedia-link{
+    color: $colour2;
+    text-decoration: none !important;
+    font-size: 20px;
+    transition: 1s ease-in;
+    padding-left: 2rem;
+    &:first-child{
+      padding-left: 0px !important;
+    }
+    &:hover{
+      color: $colour;
+    }
+  }
+}
+.edit-user{
+  color: $colour2;
+  transition: 1s ease-in;
+  text-decoration: none !important;
+  text-align: center !important;
+  font-size: 20px;
+  &:hover{
+    color: $colour;
+  }
+}
+
+.user-details{
+  // padding-left: 30%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .userinfo{
+    word-wrap: break-word;
+  }
+}
+.profie-card{
+  background: white;
+  box-shadow: 2px 6px 3px 1px #eeeeee;
+  border-top: 2px solid $colour;
+  transition: 1s ease;
+  margin: 1.8rem;
+  height: 8rem;
+  width: 15rem;
+  &:hover{
+    transform: translate(0px, 5px);
+  }
+  .profile-card-head{
+    color: $colour;
+  }
+}
+.allyform-textarea{
+  display: block;
+  width: 100%;
+  background: #e6eaed;
+  height: 8rem;
+  outline: 0;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
+  border-radius: .25rem;
+  resize: none;
+  border: 1px solid #ced4da;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  &:focus{
+    color: #000000;
+  }
+  &::placeholder{
+    color: #000000;
+  }
+}
+
+.allyprint-input{
+  display: block;
+  width: 100%;
+  background: #e6eaed;
+  outline: 0;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
+  border-radius: .25rem;
+  border: 1px solid #ced4da;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  &:focus{
+    color: #000000;
+  }
+  &::placeholder{
+    color: #000000;
+  }
+}
+
+.quote-form{
+  small{
+    color: #adb5bd;
+  }
+}
+
+.cart{
+  table{
+    thead{
+      tr{
+        th{
+          color: $colour2;
+        }
+      }
+    }
+  }
+  .cart-img{
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+
+  .cart-input{
+    width: 5rem !important;
+  }
+
+  .cart-dbtn {
+    background: transparent;
+    border: none;
+    color: $colour2;
+    transition: 1s ease;
+    &:hover{
+      color: $colour;
+    }
+  }
+}

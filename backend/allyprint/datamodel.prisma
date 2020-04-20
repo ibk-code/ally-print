@@ -1,0 +1,38 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  password: String!
+  liked: [Item!]! @relation(link: INLINE)
+  ordered: [Orders!]! @relation(link: INLINE)
+  cart: [Cart!]! @relation(link: INLINE)
+}
+
+type Item {
+  id: ID! @id
+  img: String!
+  pname: String!
+  pdetails: String!
+  price: Int!
+  pcs: Int!
+  favourite: Boolean!
+  createdAt: DateTime! @createdAt
+}
+
+type Cart {
+  id: ID! @id
+  product: Item! @relation(link: INLINE)
+  orderedBy: User!
+  createdAt: DateTime! @createdAt
+  quantity: Int!
+  totalPrice: Int
+}
+
+type Orders {
+  id: ID! @id
+  product: Cart! @relation(link: INLINE)
+  dateOrdered: DateTime @createdAt
+  paymentMethod: String!
+  delvyDate: String!
+  productStatus: String!
+}
