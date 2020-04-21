@@ -7,7 +7,8 @@ const Login = lazy(() => import('./login/Login'));
 const Contact = lazy(() => import('./contact/Contact'));
 const UserAccount = lazy(() => import('./account/UserAccount'));
 const GetQuote = lazy(() => import('./quote/Quote'));
-const Cart = lazy(() => import('./cart/Cart'))
+const Cart = lazy(() => import('./cart/Cart'));
+const Track = lazy(() => import('./track/Track'));
 
 const Router = () => (
     <BrowserRouter>
@@ -21,6 +22,7 @@ const Router = () => (
                 <Route path="/account" component={UserAccount}/>
                 <Route path="/quote" component={GetQuote} />
                 <Route path="/cart" component={Cart} />
+                <Route path="/track" component={Track} />
             </Switch>
         </Suspense>
     </BrowserRouter>

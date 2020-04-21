@@ -1,5 +1,6 @@
 $colour: #ed6e2e;
 $colour2: #847a7a;
+$colour2: #a5a3a3;
 @import "home";
 @import "login";
 .p-colour{
@@ -168,6 +169,44 @@ $colour2: #847a7a;
     transition: 1s ease;
     &:hover{
       color: $colour;
+    }
+  }
+}
+
+.track-timeline{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 100 !important;
+  &:before{
+    position: absolute;
+    background: #a5a3a3;
+    width: 510px;
+    height: 11px;
+    display: flex;
+    top: 1.9rem;
+    left: 3rem;
+    z-index: -50;
+    content: " ";
+    border-radius: 15px;
+  }
+  li{
+    padding-left: 2rem;
+    .track-checked{
+      padding: 2px 5px;
+      height: 25px;
+      color: #ffffff;
+      border-radius: 51%;
+      width: 25px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px){
+  .track-timeline{
+    &:before{
+      display: none !important;
     }
   }
 }

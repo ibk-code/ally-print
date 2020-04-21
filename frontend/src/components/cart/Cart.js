@@ -1,6 +1,5 @@
 import React from "react";
 import Header from '../Header';
-// import Banner from '../Banner';
 import Affirm from '../Affirm';
 import Footer from '../Footer';
 import CartItem from './CartItem'

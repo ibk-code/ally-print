@@ -73,7 +73,7 @@ class Header extends React.Component {
             <div className="dropdown-menu p-2 pt-3 user shadow">
                 <Link className="dropdown-item p-colour" to="/signup">Login or Create Account</Link>
                 <Link className="dropdown-item" to="/account"><i className="fas fa-user"></i>&ensp; Account</Link>
-                <Link className="dropdown-item" to="#"><i className="fas fa-box"></i>&ensp; Track Orders</Link>
+                <Link className="dropdown-item" to="/track"><i className="fas fa-box"></i>&ensp; Track Orders</Link>
                 {/* <Link className="dropdown-item" to="#"><i className="fas fa-heart"></i>&ensp; Saved Items</Link> */}
             </div>
           </div>
