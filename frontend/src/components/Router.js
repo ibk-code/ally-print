@@ -9,6 +9,7 @@ const UserAccount = lazy(() => import('./account/UserAccount'));
 const GetQuote = lazy(() => import('./quote/Quote'));
 const Cart = lazy(() => import('./cart/Cart'));
 const Track = lazy(() => import('./track/Track'));
+const Products = lazy(() => import('./product/Products'));
 
 const Router = () => (
     <BrowserRouter>
@@ -23,6 +24,7 @@ const Router = () => (
                 <Route path="/quote" component={GetQuote} />
                 <Route path="/cart" component={Cart} />
                 <Route path="/track" component={Track} />
+                <Route path="/products" component={Products} />
             </Switch>
         </Suspense>
     </BrowserRouter>

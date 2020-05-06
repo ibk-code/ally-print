@@ -54,7 +54,6 @@ nav {
   height: 500px;
   background-position:center ;
   background-repeat: no-repeat;
-  background-attachment: fixed;
     .banner-content{
       padding-top: 9rem;
         h1{
@@ -75,7 +74,7 @@ nav {
 }
 .item-card{
   width: 16rem;
-  height: 27rem;
+  height: 30rem;
   border: 1px solid #eee;
 }
 .owl-stage{
@@ -87,6 +86,7 @@ nav {
 }
 .home-img{
   height: 14rem;
+  width: inherit !important;
 }
 .h-text{
   position: relative;
@@ -151,7 +151,6 @@ nav {
   background:linear-gradient(260deg, rgba(0, 0, 0, 1.1), rgba(0, 0, 0, 0.7)),url('../img/testimonial.jpg');
   height: 400px;
   // width: 100%;
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -6,6 +6,7 @@ const {APP_SECRET, getUserId} = require('../auth/Util')
 async function createitem(parent, args, context, info) {
   // Create a new user called `Alice`
   const newItem = await context.prisma.createItem({ img: args.img, pname: args.pname, pdetails: args.pdetails, price: args.price, pcs: args.pcs, favourite: args.favourite});
+  
   console.log(`Created new user: ${newItem.name} (ID: ${newItem.id})`);
 
   // Read all users from the database and print them to the console

@@ -48,9 +48,9 @@ class Item extends React.Component {
               }
 
               return (
-                <OwlCarousel className="owl-theme" loop nav responsive={responsive} nav>
+                <OwlCarousel className="owl-theme" loop responsive={responsive} nav>
                   {itemsToRender.map(item => (
-                    <ItemCard key={item.id} item={item} />
+                    <ItemCard key={item.id} item={item} height= "25rem"/>
                   ))}
                 </OwlCarousel>
               );

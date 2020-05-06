@@ -21,6 +21,15 @@ export default class CartSummary extends React.Component{
           </div>
           <button className="btn bg-brand w-100 text-white" onClick={this.props.checkout}>Checkout</button>
         </div>
+        <div className="upload mt-4">
+          <div className="form-group">
+            <div className="custom-file">
+              <input type="file" ref={this.props.upload} className="custom-file-input" id="upload-field" />
+              <label className="custom-file-label" style={{fontSize: '0.8rem'}} htmlFor="upload-field">Upload Design</label>
+            </div>
+          </div>
+          <span>You can contact us to create your design</span>
+        </div>
       </>
     )
   }

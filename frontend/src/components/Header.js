@@ -1,13 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Header extends React.Component {
+  // constructor() {
+  //   this.state = {
+  //     activepage = location.pathname
+  //   }
+  // }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow fixed-top">
-        <Link className="navbar-brand" to="/">
+        <NavLink className="navbar-brand" to="/">
           <img src="./asset/img/ally.png" alt="Ally" className="img-fluid" />
-        </Link>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -24,30 +30,30 @@ class Header extends React.Component {
           id="navbarNavDropdown"
         >
           <ul className="navbar-nav">
-            <li className="nav-item active">
-              <Link to="/" className="nav-link">
+            <li className="nav-item">
+              <NavLink exact to="/" className="nav-link">
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/App" className="nav-link">
+              <NavLink exact to="/products" className="nav-link">
                 All Products
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/quote" className="nav-link">
+              <NavLink exact to="/quote" className="nav-link">
                 Get Quote
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/about" className="nav-link">
+              <NavLink exact to="/about" className="nav-link">
                 About
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link to="/contact" className="nav-link">
+              <NavLink exact to="/contact" className="nav-link">
                 Contact Us
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -71,13 +77,13 @@ class Header extends React.Component {
               aria-expanded="false"
             ><i className="fas fa-user"></i></p>
             <div className="dropdown-menu p-2 pt-3 user shadow">
-                <Link className="dropdown-item p-colour" to="/signup">Login or Create Account</Link>
-                <Link className="dropdown-item" to="/account"><i className="fas fa-user"></i>&ensp; Account</Link>
-                <Link className="dropdown-item" to="/track"><i className="fas fa-box"></i>&ensp; Track Orders</Link>
-                {/* <Link className="dropdown-item" to="#"><i className="fas fa-heart"></i>&ensp; Saved Items</Link> */}
+                <NavLink className="dropdown-item p-colour" to="/signup">Login or Create Account</NavLink>
+                <NavLink className="dropdown-item" to="/account"><i className="fas fa-user"></i>&ensp; Account</NavLink>
+                <NavLink className="dropdown-item" to="/track"><i className="fas fa-box"></i>&ensp; Track Orders</NavLink>
+                {/* <NavLink className="dropdown-item" to="#"><i className="fas fa-heart"></i>&ensp; Saved Items</NavLink> */}
             </div>
           </div>
-          <Link className="p-colour cart" to="/cart"><i className="fas fa-shopping-basket"></i></Link>
+          <NavLink className="p-colour cart" to="/cart"><i className="fas fa-shopping-basket"></i></NavLink>
         </div>
       </nav>
     );

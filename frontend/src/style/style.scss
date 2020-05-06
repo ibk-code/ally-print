@@ -203,10 +203,29 @@ $colour2: #a5a3a3;
   }
 }
 
+.product-list{
+  display: flex;
+  flex-wrap: wrap;
+  .item {
+    margin-left: 2rem;
+    margin-top: 2rem;
+  }
+}
+
 @media screen and (max-width: 500px){
   .track-timeline{
     &:before{
       display: none !important;
+    }
+  }
+}
+
+.upload{
+  .custom-file-label{
+    &:after{
+      background: $colour !important;
+      color: #ffffff;
+      border: none;
     }
   }
 }

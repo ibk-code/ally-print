@@ -2,6 +2,7 @@ function cleartimer(x) {
     clearTimeout(x)
 }
 
+//adding animation class to each element
 let u = i => {
     let timer1
     return (x) => {
@@ -34,6 +35,7 @@ let t = (i) => {
     }
 }
 
+//call the timer and if items loaded clear loader
 let last = (x,i,a) => {
     let timer1 = u(i)(x);
     let timer2 = t(i)(x)(a)(last)
@@ -45,6 +47,7 @@ let last = (x,i,a) => {
     }
 }
 
+//convert loader elemennts to array
 let elemToArray = (elem) => {
     let ele = document.querySelectorAll(`.${elem}`);
     return () => {
@@ -52,12 +55,14 @@ let elemToArray = (elem) => {
     }
 }
 
+//run animation on each elem
 let load = (elem) => {
     return elem.forEach((x,i,a) => {
         last(x,i,a)
     })
 }
 
+//call loader animation on each
 let loader = () => {
     let elem = elemToArray('loaderelem')();
     load(elem);
