@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style/style.scss'
-import Router from './components/Router';
+import RouterWrapper from './components/Router';
 import * as serviceWorker from './serviceWorker';
 
 import { ApolloProvider } from 'react-apollo'
@@ -21,7 +21,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Router />
+    <RouterWrapper />
   </ApolloProvider>, 
   document.getElementById('root'));
 

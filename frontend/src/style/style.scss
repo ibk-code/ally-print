@@ -164,12 +164,13 @@ $colour2: #a5a3a3;
 
   .cart-dbtn {
     background: transparent;
+    padding: 0rem 0.5rem;
     border: none;
     color: $colour2;
     transition: 1s ease;
-    &:hover{
-      color: $colour;
-    }
+    // &:hover{
+    //   color: $colour;
+    // }
   }
 }
 

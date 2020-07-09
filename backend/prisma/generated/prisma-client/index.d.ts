@@ -265,6 +265,12 @@ export type UserOrderByInput =
   | "name_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "address_ASC"
+  | "address_DESC"
+  | "phone_ASC"
+  | "phone_DESC"
+  | "gender_ASC"
+  | "gender_DESC"
   | "password_ASC"
   | "password_DESC";
 
@@ -444,7 +450,6 @@ export interface CartWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  product?: Maybe<ItemWhereInput>;
   orderedBy?: Maybe<UserWhereInput>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
@@ -516,6 +521,48 @@ export interface UserWhereInput {
   email_not_starts_with?: Maybe<String>;
   email_ends_with?: Maybe<String>;
   email_not_ends_with?: Maybe<String>;
+  address?: Maybe<String>;
+  address_not?: Maybe<String>;
+  address_in?: Maybe<String[] | String>;
+  address_not_in?: Maybe<String[] | String>;
+  address_lt?: Maybe<String>;
+  address_lte?: Maybe<String>;
+  address_gt?: Maybe<String>;
+  address_gte?: Maybe<String>;
+  address_contains?: Maybe<String>;
+  address_not_contains?: Maybe<String>;
+  address_starts_with?: Maybe<String>;
+  address_not_starts_with?: Maybe<String>;
+  address_ends_with?: Maybe<String>;
+  address_not_ends_with?: Maybe<String>;
+  phone?: Maybe<String>;
+  phone_not?: Maybe<String>;
+  phone_in?: Maybe<String[] | String>;
+  phone_not_in?: Maybe<String[] | String>;
+  phone_lt?: Maybe<String>;
+  phone_lte?: Maybe<String>;
+  phone_gt?: Maybe<String>;
+  phone_gte?: Maybe<String>;
+  phone_contains?: Maybe<String>;
+  phone_not_contains?: Maybe<String>;
+  phone_starts_with?: Maybe<String>;
+  phone_not_starts_with?: Maybe<String>;
+  phone_ends_with?: Maybe<String>;
+  phone_not_ends_with?: Maybe<String>;
+  gender?: Maybe<String>;
+  gender_not?: Maybe<String>;
+  gender_in?: Maybe<String[] | String>;
+  gender_not_in?: Maybe<String[] | String>;
+  gender_lt?: Maybe<String>;
+  gender_lte?: Maybe<String>;
+  gender_gt?: Maybe<String>;
+  gender_gte?: Maybe<String>;
+  gender_contains?: Maybe<String>;
+  gender_not_contains?: Maybe<String>;
+  gender_starts_with?: Maybe<String>;
+  gender_not_starts_with?: Maybe<String>;
+  gender_ends_with?: Maybe<String>;
+  gender_not_ends_with?: Maybe<String>;
   password?: Maybe<String>;
   password_not?: Maybe<String>;
   password_in?: Maybe<String[] | String>;
@@ -551,25 +598,9 @@ export type UserWhereUniqueInput = AtLeastOne<{
 
 export interface CartCreateInput {
   id?: Maybe<ID_Input>;
-  product: ItemCreateOneInput;
   orderedBy: UserCreateOneWithoutCartInput;
   quantity: Int;
   totalPrice?: Maybe<Int>;
-}
-
-export interface ItemCreateOneInput {
-  create?: Maybe<ItemCreateInput>;
-  connect?: Maybe<ItemWhereUniqueInput>;
-}
-
-export interface ItemCreateInput {
-  id?: Maybe<ID_Input>;
-  img: String;
-  pname: String;
-  pdetails: String;
-  price: Int;
-  pcs: Int;
-  favourite: Boolean;
 }
 
 export interface UserCreateOneWithoutCartInput {
@@ -581,6 +612,9 @@ export interface UserCreateWithoutCartInput {
   id?: Maybe<ID_Input>;
   name: String;
   email: String;
+  address: String;
+  phone: String;
+  gender: String;
   password: String;
   liked?: Maybe<ItemCreateManyInput>;
   ordered?: Maybe<OrdersCreateManyInput>;
@@ -589,6 +623,16 @@ export interface UserCreateWithoutCartInput {
 export interface ItemCreateManyInput {
   create?: Maybe<ItemCreateInput[] | ItemCreateInput>;
   connect?: Maybe<ItemWhereUniqueInput[] | ItemWhereUniqueInput>;
+}
+
+export interface ItemCreateInput {
+  id?: Maybe<ID_Input>;
+  img: String;
+  pname: String;
+  pdetails: String;
+  price: Int;
+  pcs: Int;
+  favourite: Boolean;
 }
 
 export interface OrdersCreateManyInput {
@@ -610,31 +654,9 @@ export interface CartCreateOneInput {
 }
 
 export interface CartUpdateInput {
-  product?: Maybe<ItemUpdateOneRequiredInput>;
   orderedBy?: Maybe<UserUpdateOneRequiredWithoutCartInput>;
   quantity?: Maybe<Int>;
   totalPrice?: Maybe<Int>;
-}
-
-export interface ItemUpdateOneRequiredInput {
-  create?: Maybe<ItemCreateInput>;
-  update?: Maybe<ItemUpdateDataInput>;
-  upsert?: Maybe<ItemUpsertNestedInput>;
-  connect?: Maybe<ItemWhereUniqueInput>;
-}
-
-export interface ItemUpdateDataInput {
-  img?: Maybe<String>;
-  pname?: Maybe<String>;
-  pdetails?: Maybe<String>;
-  price?: Maybe<Int>;
-  pcs?: Maybe<Int>;
-  favourite?: Maybe<Boolean>;
-}
-
-export interface ItemUpsertNestedInput {
-  update: ItemUpdateDataInput;
-  create: ItemCreateInput;
 }
 
 export interface UserUpdateOneRequiredWithoutCartInput {
@@ -647,6 +669,9 @@ export interface UserUpdateOneRequiredWithoutCartInput {
 export interface UserUpdateWithoutCartDataInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
+  address?: Maybe<String>;
+  phone?: Maybe<String>;
+  gender?: Maybe<String>;
   password?: Maybe<String>;
   liked?: Maybe<ItemUpdateManyInput>;
   ordered?: Maybe<OrdersUpdateManyInput>;
@@ -675,6 +700,15 @@ export interface ItemUpdateManyInput {
 export interface ItemUpdateWithWhereUniqueNestedInput {
   where: ItemWhereUniqueInput;
   data: ItemUpdateDataInput;
+}
+
+export interface ItemUpdateDataInput {
+  img?: Maybe<String>;
+  pname?: Maybe<String>;
+  pdetails?: Maybe<String>;
+  price?: Maybe<Int>;
+  pcs?: Maybe<Int>;
+  favourite?: Maybe<Boolean>;
 }
 
 export interface ItemUpsertWithWhereUniqueNestedInput {
@@ -826,7 +860,6 @@ export interface CartUpdateOneRequiredInput {
 }
 
 export interface CartUpdateDataInput {
-  product?: Maybe<ItemUpdateOneRequiredInput>;
   orderedBy?: Maybe<UserUpdateOneRequiredWithoutCartInput>;
   quantity?: Maybe<Int>;
   totalPrice?: Maybe<Int>;
@@ -969,6 +1002,9 @@ export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   email: String;
+  address: String;
+  phone: String;
+  gender: String;
   password: String;
   liked?: Maybe<ItemCreateManyInput>;
   ordered?: Maybe<OrdersCreateManyInput>;
@@ -984,7 +1020,6 @@ export interface CartCreateManyWithoutOrderedByInput {
 
 export interface CartCreateWithoutOrderedByInput {
   id?: Maybe<ID_Input>;
-  product: ItemCreateOneInput;
   quantity: Int;
   totalPrice?: Maybe<Int>;
 }
@@ -992,6 +1027,9 @@ export interface CartCreateWithoutOrderedByInput {
 export interface UserUpdateInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
+  address?: Maybe<String>;
+  phone?: Maybe<String>;
+  gender?: Maybe<String>;
   password?: Maybe<String>;
   liked?: Maybe<ItemUpdateManyInput>;
   ordered?: Maybe<OrdersUpdateManyInput>;
@@ -1026,7 +1064,6 @@ export interface CartUpdateWithWhereUniqueWithoutOrderedByInput {
 }
 
 export interface CartUpdateWithoutOrderedByDataInput {
-  product?: Maybe<ItemUpdateOneRequiredInput>;
   quantity?: Maybe<Int>;
   totalPrice?: Maybe<Int>;
 }
@@ -1094,6 +1131,9 @@ export interface CartUpdateManyDataInput {
 export interface UserUpdateManyMutationInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
+  address?: Maybe<String>;
+  phone?: Maybe<String>;
+  gender?: Maybe<String>;
   password?: Maybe<String>;
 }
 
@@ -1146,7 +1186,6 @@ export interface Cart {
 
 export interface CartPromise extends Promise<Cart>, Fragmentable {
   id: () => Promise<ID_Output>;
-  product: <T = ItemPromise>() => T;
   orderedBy: <T = UserPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   quantity: () => Promise<Int>;
@@ -1157,7 +1196,6 @@ export interface CartSubscription
   extends Promise<AsyncIterator<Cart>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  product: <T = ItemSubscription>() => T;
   orderedBy: <T = UserSubscription>() => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   quantity: () => Promise<AsyncIterator<Int>>;
@@ -1168,11 +1206,135 @@ export interface CartNullablePromise
   extends Promise<Cart | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  product: <T = ItemPromise>() => T;
   orderedBy: <T = UserPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   quantity: () => Promise<Int>;
   totalPrice: () => Promise<Int>;
+}
+
+export interface User {
+  id: ID_Output;
+  name: String;
+  email: String;
+  address: String;
+  phone: String;
+  gender: String;
+  password: String;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  address: () => Promise<String>;
+  phone: () => Promise<String>;
+  gender: () => Promise<String>;
+  password: () => Promise<String>;
+  liked: <T = FragmentableArray<Item>>(args?: {
+    where?: ItemWhereInput;
+    orderBy?: ItemOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  ordered: <T = FragmentableArray<Orders>>(args?: {
+    where?: OrdersWhereInput;
+    orderBy?: OrdersOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  cart: <T = FragmentableArray<Cart>>(args?: {
+    where?: CartWhereInput;
+    orderBy?: CartOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  phone: () => Promise<AsyncIterator<String>>;
+  gender: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  liked: <T = Promise<AsyncIterator<ItemSubscription>>>(args?: {
+    where?: ItemWhereInput;
+    orderBy?: ItemOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  ordered: <T = Promise<AsyncIterator<OrdersSubscription>>>(args?: {
+    where?: OrdersWhereInput;
+    orderBy?: OrdersOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  cart: <T = Promise<AsyncIterator<CartSubscription>>>(args?: {
+    where?: CartWhereInput;
+    orderBy?: CartOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  address: () => Promise<String>;
+  phone: () => Promise<String>;
+  gender: () => Promise<String>;
+  password: () => Promise<String>;
+  liked: <T = FragmentableArray<Item>>(args?: {
+    where?: ItemWhereInput;
+    orderBy?: ItemOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  ordered: <T = FragmentableArray<Orders>>(args?: {
+    where?: OrdersWhereInput;
+    orderBy?: OrdersOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  cart: <T = FragmentableArray<Cart>>(args?: {
+    where?: CartWhereInput;
+    orderBy?: CartOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface Item {
@@ -1221,119 +1383,6 @@ export interface ItemNullablePromise
   pcs: () => Promise<Int>;
   favourite: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
-}
-
-export interface User {
-  id: ID_Output;
-  name: String;
-  email: String;
-  password: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  liked: <T = FragmentableArray<Item>>(args?: {
-    where?: ItemWhereInput;
-    orderBy?: ItemOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  ordered: <T = FragmentableArray<Orders>>(args?: {
-    where?: OrdersWhereInput;
-    orderBy?: OrdersOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  cart: <T = FragmentableArray<Cart>>(args?: {
-    where?: CartWhereInput;
-    orderBy?: CartOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  liked: <T = Promise<AsyncIterator<ItemSubscription>>>(args?: {
-    where?: ItemWhereInput;
-    orderBy?: ItemOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  ordered: <T = Promise<AsyncIterator<OrdersSubscription>>>(args?: {
-    where?: OrdersWhereInput;
-    orderBy?: OrdersOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  cart: <T = Promise<AsyncIterator<CartSubscription>>>(args?: {
-    where?: CartWhereInput;
-    orderBy?: CartOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  liked: <T = FragmentableArray<Item>>(args?: {
-    where?: ItemWhereInput;
-    orderBy?: ItemOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  ordered: <T = FragmentableArray<Orders>>(args?: {
-    where?: OrdersWhereInput;
-    orderBy?: OrdersOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  cart: <T = FragmentableArray<Cart>>(args?: {
-    where?: CartWhereInput;
-    orderBy?: CartOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
 }
 
 export interface Orders {
@@ -1824,6 +1873,9 @@ export interface UserPreviousValues {
   id: ID_Output;
   name: String;
   email: String;
+  address: String;
+  phone: String;
+  gender: String;
   password: String;
 }
 
@@ -1833,6 +1885,9 @@ export interface UserPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
+  address: () => Promise<String>;
+  phone: () => Promise<String>;
+  gender: () => Promise<String>;
   password: () => Promise<String>;
 }
 
@@ -1842,6 +1897,9 @@ export interface UserPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  phone: () => Promise<AsyncIterator<String>>;
+  gender: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
 }
 

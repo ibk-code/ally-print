@@ -2,6 +2,9 @@ type User {
   id: ID! @id
   name: String!
   email: String! @unique
+  address: String!
+  phone: String!
+  gender: String!
   password: String!
   liked: [Item!]! @relation(link: INLINE)
   ordered: [Orders!]! @relation(link: INLINE)
@@ -21,7 +24,6 @@ type Item {
 
 type Cart {
   id: ID! @id
-  product: Item! @relation(link: INLINE)
   orderedBy: User!
   createdAt: DateTime! @createdAt
   quantity: Int!

@@ -25,7 +25,6 @@ type BatchPayload {
 
 type Cart {
   id: ID!
-  product: Item!
   orderedBy: User!
   createdAt: DateTime!
   quantity: Int!
@@ -40,7 +39,6 @@ type CartConnection {
 
 input CartCreateInput {
   id: ID
-  product: ItemCreateOneInput!
   orderedBy: UserCreateOneWithoutCartInput!
   quantity: Int!
   totalPrice: Int
@@ -58,7 +56,6 @@ input CartCreateOneInput {
 
 input CartCreateWithoutOrderedByInput {
   id: ID
-  product: ItemCreateOneInput!
   quantity: Int!
   totalPrice: Int
 }
@@ -147,14 +144,12 @@ input CartSubscriptionWhereInput {
 }
 
 input CartUpdateDataInput {
-  product: ItemUpdateOneRequiredInput
   orderedBy: UserUpdateOneRequiredWithoutCartInput
   quantity: Int
   totalPrice: Int
 }
 
 input CartUpdateInput {
-  product: ItemUpdateOneRequiredInput
   orderedBy: UserUpdateOneRequiredWithoutCartInput
   quantity: Int
   totalPrice: Int
@@ -195,7 +190,6 @@ input CartUpdateOneRequiredInput {
 }
 
 input CartUpdateWithoutOrderedByDataInput {
-  product: ItemUpdateOneRequiredInput
   quantity: Int
   totalPrice: Int
 }
@@ -231,7 +225,6 @@ input CartWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  product: ItemWhereInput
   orderedBy: UserWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
@@ -296,11 +289,6 @@ input ItemCreateInput {
 input ItemCreateManyInput {
   create: [ItemCreateInput!]
   connect: [ItemWhereUniqueInput!]
-}
-
-input ItemCreateOneInput {
-  create: ItemCreateInput
-  connect: ItemWhereUniqueInput
 }
 
 type ItemEdge {
@@ -495,21 +483,9 @@ input ItemUpdateManyWithWhereNestedInput {
   data: ItemUpdateManyDataInput!
 }
 
-input ItemUpdateOneRequiredInput {
-  create: ItemCreateInput
-  update: ItemUpdateDataInput
-  upsert: ItemUpsertNestedInput
-  connect: ItemWhereUniqueInput
-}
-
 input ItemUpdateWithWhereUniqueNestedInput {
   where: ItemWhereUniqueInput!
   data: ItemUpdateDataInput!
-}
-
-input ItemUpsertNestedInput {
-  update: ItemUpdateDataInput!
-  create: ItemCreateInput!
 }
 
 input ItemUpsertWithWhereUniqueNestedInput {
@@ -948,6 +924,9 @@ type User {
   id: ID!
   name: String!
   email: String!
+  address: String!
+  phone: String!
+  gender: String!
   password: String!
   liked(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item!]
   ordered(where: OrdersWhereInput, orderBy: OrdersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Orders!]
@@ -964,6 +943,9 @@ input UserCreateInput {
   id: ID
   name: String!
   email: String!
+  address: String!
+  phone: String!
+  gender: String!
   password: String!
   liked: ItemCreateManyInput
   ordered: OrdersCreateManyInput
@@ -979,6 +961,9 @@ input UserCreateWithoutCartInput {
   id: ID
   name: String!
   email: String!
+  address: String!
+  phone: String!
+  gender: String!
   password: String!
   liked: ItemCreateManyInput
   ordered: OrdersCreateManyInput
@@ -996,6 +981,12 @@ enum UserOrderByInput {
   name_DESC
   email_ASC
   email_DESC
+  address_ASC
+  address_DESC
+  phone_ASC
+  phone_DESC
+  gender_ASC
+  gender_DESC
   password_ASC
   password_DESC
 }
@@ -1004,6 +995,9 @@ type UserPreviousValues {
   id: ID!
   name: String!
   email: String!
+  address: String!
+  phone: String!
+  gender: String!
   password: String!
 }
 
@@ -1026,6 +1020,9 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   name: String
   email: String
+  address: String
+  phone: String
+  gender: String
   password: String
   liked: ItemUpdateManyInput
   ordered: OrdersUpdateManyInput
@@ -1035,6 +1032,9 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   name: String
   email: String
+  address: String
+  phone: String
+  gender: String
   password: String
 }
 
@@ -1048,6 +1048,9 @@ input UserUpdateOneRequiredWithoutCartInput {
 input UserUpdateWithoutCartDataInput {
   name: String
   email: String
+  address: String
+  phone: String
+  gender: String
   password: String
   liked: ItemUpdateManyInput
   ordered: OrdersUpdateManyInput
@@ -1101,6 +1104,48 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  gender: String
+  gender_not: String
+  gender_in: [String!]
+  gender_not_in: [String!]
+  gender_lt: String
+  gender_lte: String
+  gender_gt: String
+  gender_gte: String
+  gender_contains: String
+  gender_not_contains: String
+  gender_starts_with: String
+  gender_not_starts_with: String
+  gender_ends_with: String
+  gender_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]

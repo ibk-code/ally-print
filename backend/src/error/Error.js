@@ -1,0 +1,3 @@
+class GenericError extends Error {
+    
+}

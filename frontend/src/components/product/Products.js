@@ -4,55 +4,102 @@ import Affirm from "../Affirm";
 import Footer from "../Footer";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import axios from 'axios';
 import Loader from "../Loader";
+import {GlobalContext} from '../GlobalContext'
 import ItemCard from "../ItemCard";
 
 class Products extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      error: false,
+      loading : false,
+      product : []
+    }
+  }
+
+  fetchproduct = () => {
+    this.setState({loading: true})
+    try {
+      
+      axios.get(`http://localhost:4000/api/ally_v1/product`)
+      .then(res => {
+        console.log(res)
+        const respon = res.data.product;
+        // let test = [];
+        // let alt, pcs, price, caption;
+        let newObj = respon.map((e, i, a) => (
+          {asset_id: a[i].id, url: a[i].url, alt: a[i].content.pdesc && a[i].content.pdesc.custom}
+        ))
+        console.log(newObj);
+        this.setState({product: newObj});
+      })
+
+
+    }catch (e) {
+      console.log(e);
+      this.setState({error: true})
+    }
+  }
+
+componentDidMount() {
+   this.fetchproduct();
+}
+
   render() {
-    const ProductItems = gql`
-      {
-        homeItems {
-          id
-          img
-          pname
-          pdetails
-          price
-          pcs
-        }
-      }
-    `;
+    // const ProductItems = gql`
+    //   {
+    //     homeItems {
+    //       id
+    //       img
+    //       pname
+    //       pdetails
+    //       price
+    //       pcs
+    //     }
+    //   }
+    // `;
+    console.log(this.state.product)
+    let products;
+
+    if (this.state.loading) {
+      products = <Loader />      
+    }
+
+    if (this.state.error) {
+      products = <Loader />
+    }
+
+    if (this.state.product.length > 0) {
+          // let itemsToRender = this.state.product
+          // itemsToRender.length = 10
+
+        products = <div className="product-list mx-auto">
+          {this.state.product.map(elem => (
+            <ItemCard key={elem.asset_id} dataValue={elem.asset_id} item={elem} visible= {true} products={this.state.product}/>
+          ))}
+        </div>
+    }
+
     return (
-      <React.Fragment>
-        <Header />
-        <div className="mx-auto d-margin p-5">
-          <h2 className="h-text">All Products</h2>
-          <Query query={ProductItems}>
-            {({ loading, error, data }) => {
-              if (loading) return <Loader />;
-              if (error) return <Loader />;
-
-              const itemsToRender = data.homeItems;
-              console.log(itemsToRender);
-
-              if (itemsToRender === null) {
-                console.log("empty data" + itemsToRender);
-              }
-
-              return (
-                <div className="product-list mx-auto">
-                  {itemsToRender.map((item) => (
-                    <ItemCard key={item.id} item={item} />
-                  ))}
-                </div>
-              );
-            }}
-          </Query>
-        </div>
-        <div className="m-space bg-brand">
-          <Affirm />
-          <Footer />
-        </div>
-      </React.Fragment>
+      <GlobalContext.Consumer>
+        {context => (
+          <React.Fragment>
+            <Header />
+            <div className="mx-auto d-margin p-5">
+              <h2 className="h-text">All Products</h2>
+              <div>
+                {products}
+              </div>
+            </div>
+            <div className="m-space bg-brand">
+              <Affirm />
+              <Footer />
+            </div>
+          </React.Fragment>
+        )}
+      </GlobalContext.Consumer>
     );
   }
 }

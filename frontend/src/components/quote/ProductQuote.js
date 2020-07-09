@@ -1,12 +1,58 @@
 import React from "react";
+import axios from 'axios';
 
 export default class ProductQuote extends React.Component {
+  constructor(props){
+    super(props)
+    this.state ={
+      desc: " ",
+      designStatus: " ",
+      address: " ",
+      name: " ",
+      email: " ",
+      phone: " ",
+      statusMessage: " ",
+    }
+  }
+
+  submitQuote = e => {
+    e.preventDefault();
+    const url = `http://localhost:4000/api/ally_v1/quote`;
+    axios({
+      method: "post",
+      url: url,
+      data: {
+        desc: this.state.desc,
+        designStatus: this.state.designStatus,
+        phone: this.state.phone,
+        name: this.state.name,
+        email: this.state.email,
+        address: this.state.address,
+      },
+    }).then(res => {
+      this.setState({
+        desc: " ",
+        designStatus: " ",
+        address: " ",
+        name: " ",
+        email: " ",
+        phone: " ",
+        statusMessage: " Qoute was sent successfully. Please expect a reply from us"
+      })
+      e.reset();
+    }).catch(e => {
+      this.setState({
+        statusMessage: "Please try again your quote was not submitted"
+      })
+    })
+  }
+
   render() {
     return (
       <React.Fragment>
         <div>
           <h4><b>Order Details</b></h4>
-          <form className="pt-4">
+          <form className="pt-4" onSubmit={this.submitQuote}>
             <h5>Product Informtion</h5>
             <div className="form-group pt-3 quote-form">
               <label htmlFor="product-desc">What do you want to print ?</label><br />
@@ -15,10 +61,13 @@ export default class ProductQuote extends React.Component {
               </small>
               <textarea
                 id="product-desc"
+                required
+                value={this.state.desc}
                 className="allyform-textarea"
                 placeholder="500 t-shirts, 100 pens ..."
-                value={this.props.productDesc}
-                onChange={this.props.onChange}
+                onChange={e => (
+                  this.setState({desc: e.target.value})
+                )}
               ></textarea>
             </div>
             <br />
@@ -28,14 +77,20 @@ export default class ProductQuote extends React.Component {
                 <div className="col-md-6">
                   <div className="form-check">
                     <input type="radio" name="design" className="form-check-input"
-                    id="withdesign" />
+                    id="withdesign" onChange={e => (
+                      e.target.checked &&
+                      this.setState({designStatus: "user have a design"})
+                    )}/>
                     <label className="form-check-label" htmlFor="withdesign">Yes I  do</label>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="form-check">
                     <input type="radio" name="design" className="form-check-input"
-                    id="nodesign" />
+                    id="nodesign" onChange={e => (
+                      e.target.checked &&
+                      this.setState({designStatus: "user wants us to handle design"})
+                    )}/>
                     <label className="form-check-label" htmlFor="nodesign">No, I want your team to design for me.</label>
                   </div>
                 </div>
@@ -43,29 +98,34 @@ export default class ProductQuote extends React.Component {
             </div>
             <br />
             <div className="form-group pt-3 quote-form">
-              <label htmlFor="product-desc">Where do you want your order delivered too ?</label><br />
+              <label htmlFor="address">Where do you want your order delivered too ?</label><br />
               <small>
                 Please provide your location, so we can make your delivery seamless.
               </small>
               <textarea
-                id="product-desc"
+                id="address"
+                value={this.state.address}
                 className="allyform-textarea"
                 placeholder="7,jacob street, Lagos"
-                value={this.props.address}
-                onChange={this.props.onChange}
+                onChange={e => (
+                  this.setState({address: e.target.value})
+                )}
               ></textarea>
             </div>
             <h5>Order Details</h5>
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group pt-3">
-                  <label htmlFor="firstname">name</label><br />
+                  <label htmlFor="name">Name</label><br />
                   <input
                     id="name"
                     className="allyprint-input"
                     placeholder="name"
-                    value={this.props.name}
-                    onChange={this.props.onChange}
+                    required
+                    value={this.state.name}
+                    onChange={e => (
+                      this.setState({name: e.target.value})
+                    )}
                   />
                 </div>
               </div>
@@ -73,12 +133,15 @@ export default class ProductQuote extends React.Component {
                 <div className="form-group pt-3">
                   <label htmlFor="email">Email</label><br />
                   <input
-                    id="emai"
+                    id="email"
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     className="allyprint-input"
+                    required
                     placeholder="email"
-                    value={this.props.email}
-                    onChange={this.props.onChange}
+                    value={this.state.email}
+                    onChange={e => (
+                      this.setState({email: e.target.value})
+                    )}
                   />
                 </div>
               </div>
@@ -89,14 +152,19 @@ export default class ProductQuote extends React.Component {
                   <label htmlFor="phone">Phone</label><br />
                   <input
                     id="phone"
+                    required
                     className="allyprint-input"
                     placeholder="phone"
-                    value={this.props.phone}
-                    onChange={this.props.onChange}
+                    value={this.state.phone}
+                    onChange={e => (
+                      this.setState({phone: e.target.value})
+                    )}
                   />
                 </div>
               </div>
             </div>
+            <div>{this.state.statusMessage}</div>
+            <button type="submit" className="btn bg-brand text-light">Submit</button>
           </form>
         </div>
       </React.Fragment>

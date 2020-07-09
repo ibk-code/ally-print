@@ -11,7 +11,7 @@ class Banner extends React.Component {
             <p className="text-center text-white">
               Order For Quality Printing And Get It Delivered To Your Doorstep
             </p>
-            <Link className="btn btn-brand text-center d-block mx-auto" to="/shop">Order now</Link>
+            <Link className="btn btn-brand text-center d-block mx-auto" to="/quote">Get Quote</Link>
           </div>
         </div>
       </React.Fragment>

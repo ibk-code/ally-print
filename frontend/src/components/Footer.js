@@ -14,14 +14,14 @@ class Footer extends React.Component {
             </div>
             <div className="col-md-2">
               <h5 className="pt-3 p-colour pb-2">Quick Links</h5>
-              <Link to="/shop" className="f-link">
-                Shop
+              <Link to="/products" className="f-link">
+                Products
               </Link>
-              <Link to="/design" className="f-link">
+              {/* <Link to="/design" className="f-link">
                 Design
-              </Link>
-              <Link to="/track" className="f-link">
-                Track
+              </Link> */}
+              <Link to="/login" className="f-link">
+                Login
               </Link>
               <Link to="/about" className="f-link">
                 About
@@ -38,19 +38,19 @@ class Footer extends React.Component {
                 <Link to="#" className="f-icon"><i className="fab fa-instagram"></i></Link>
                 <Link to="#" className="f-icon"><i className="fab fa-twitter"></i></Link>
               </div>
-              <h5 className="pt-3 p-colour pb-2">Payment System</h5>
-              <img src="./asset/img/icon/payment.png" className="img-fluid" alt="Payment System" />
               <h5 className="pt-3 p-colour">Delivery</h5>
               <span className="fab fa-dhl p-icon m-minus"></span>
             </div>
             <div className="col-md-3">
-              <h5 className="pt-3 p-colour pb-2">Subscribe for our newsletter</h5>
+              {/* <h5 className="pt-3 p-colour pb-2">Subscribe for our newsletter</h5>
               <form>
                 <div className="form-group">
                   <input type="email" name="email" placeholder="Drop your email" className="form-control f-input" />
                 </div>
                 <button className="btn btn-brand" type="button">Submit</button>
-              </form>
+              </form> */}
+              <h5 className="pt-3 p-colour pb-2">Payment System</h5>
+              <img src="./asset/img/icon/payment.png" className="img-fluid" alt="Payment System" />
             </div>
           </div>
           <p className="text-center text-secondary pt-5">Copyright &copy; 2020 AllyPrints. All rights reserved.</p>
