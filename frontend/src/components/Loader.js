@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { loader } from '../loaderanimation' ;
+import { loader } from '../composedhelper' ;
 
 export default class Loader extends React.Component {
     constructor(props){

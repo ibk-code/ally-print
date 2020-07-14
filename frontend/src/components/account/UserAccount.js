@@ -3,7 +3,6 @@ import Header from "../Header";
 import UserImg from "./Userimg";
 import Affirm from "../Affirm";
 import Footer from "../Footer";
-import { Link } from "react-router-dom";
 import UserField from "./UserField";
 import { GlobalContext } from "../GlobalContext";
 

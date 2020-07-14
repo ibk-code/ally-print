@@ -15,7 +15,7 @@ export default class Form extends React.Component{
 
     submitContact = (e) => {
         e.preventDefault();
-        const url = `http://localhost:4000/api/ally_v1/contact`;
+        const url = `https://allyprint.herokuapp.com/api/query/contact`;
         axios({
         method: "post",
         url: url,
@@ -54,7 +54,7 @@ export default class Form extends React.Component{
                             className="form-control"
                             value={this.state.name}
                             type="text"
-                            placeholder="Please type in your name"
+                            placeholder="Name"
                             onChange ={e => {this.setState({
                                 name:e.target.value
                             })}} />
@@ -65,7 +65,7 @@ export default class Form extends React.Component{
                             id="email"
                             required
                             className="form-control"
-                            placeholder="Please type in an active email"
+                            placeholder="Email"
                             value={this.state.email}
                             type="email"
                             // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
@@ -81,7 +81,7 @@ export default class Form extends React.Component{
                             className="form-control"
                             value ={this.state.phone}
                             ref={elem => {this.props.elems.push(elem)}}
-                            placeholder="Please type in your number"
+                            placeholder="Mobile Number"
                             type="number"
                             onChange ={e => {this.setState({
                                 phone:e.target.value
@@ -95,7 +95,7 @@ export default class Form extends React.Component{
                             className="form-control"
                             ref={elem => {this.props.elems.push(elem)}}
                             value={this.state.message}
-                            placeholder="Please drop your message"
+                            placeholder="Message"
                             onChange ={e => {this.setState({
                                 message:e.target.value
                             })}}>

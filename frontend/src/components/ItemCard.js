@@ -27,13 +27,7 @@ class ItemCard extends React.Component {
                   <p style={{fontSize: "14px", display: this.props.visible? "block" : "none"}}>
                     {item.alt && item.alt.alt}
                   </p>
-                  <Link type="button" to="/quote" className="btn btn-brand" 
-                  // onClick={(e) => {
-                  //   context.handleAddToCart(e, this.props.products)
-                  // }} 
-                  data-value={this.props.dataValue}>
-                    Get Quote
-                  </Link >
+                  <Link className="btn btn-brand text-center d-block" to="/quote" data-value={this.props.dataValue}>Get Quote</Link>
                 </div>
               </div>
           </React.Fragment>

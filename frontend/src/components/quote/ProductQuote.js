@@ -11,13 +11,17 @@ export default class ProductQuote extends React.Component {
       name: " ",
       email: " ",
       phone: " ",
+      status: false,
       statusMessage: " ",
     }
   }
 
   submitQuote = e => {
+    this.setState({
+      status:false
+    })
     e.preventDefault();
-    const url = `http://localhost:4000/api/ally_v1/quote`;
+    const url = `https://allyprint.herokuapp.com/api/query/quote`;
     axios({
       method: "post",
       url: url,
@@ -37,11 +41,12 @@ export default class ProductQuote extends React.Component {
         name: " ",
         email: " ",
         phone: " ",
+        status: true,
         statusMessage: " Qoute was sent successfully. Please expect a reply from us"
       })
-      e.reset();
     }).catch(e => {
       this.setState({
+        status:true,
         statusMessage: "Please try again your quote was not submitted"
       })
     })
@@ -134,7 +139,7 @@ export default class ProductQuote extends React.Component {
                   <label htmlFor="email">Email</label><br />
                   <input
                     id="email"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     className="allyprint-input"
                     required
                     placeholder="email"
@@ -163,9 +168,9 @@ export default class ProductQuote extends React.Component {
                 </div>
               </div>
             </div>
-            <div>{this.state.statusMessage}</div>
             <button type="submit" className="btn bg-brand text-light">Submit</button>
           </form>
+          <div>{this.state.status && this.state.statusMessage}</div>
         </div>
       </React.Fragment>
     );

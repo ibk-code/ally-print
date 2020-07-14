@@ -10,7 +10,6 @@ class Header extends React.Component {
   // }
 
   render() {
-    const loggedIn = window.sessionStorage.getItem("loggedIn");
     return (
       <GlobalContext.Consumer>
         {(context) => (
@@ -66,7 +65,7 @@ class Header extends React.Component {
                   </li>
                 </ul>
               </div>
-              <div className="user-avatar">
+              {/* <div className="user-avatar"> */}
                 {/* <div className="btn-group pr-5">
             <p
               className="dropdown-toggle p-colour"
@@ -78,7 +77,7 @@ class Header extends React.Component {
               <input type="text" name="" className="form-control" />
             </div>
           </div> */}
-                <div className="btn-group">
+                {/* <div className="btn-group">
                   <p
                     className="dropdown-toggle p-colour"
                     data-toggle="dropdown"
@@ -86,9 +85,9 @@ class Header extends React.Component {
                     aria-expanded="false"
                   >
                     <i className="fas fa-user"></i>
-                  </p>
-                  <div className="dropdown-menu p-2 pt-3 user shadow">
-                    {!context.state.loggedIn ? 
+                  </p> */}
+                  {/* <div className="dropdown-menu p-2 pt-3 user shadow"> */}
+                    {/* {!context.state.loggedIn ? 
                       <NavLink className="dropdown-item p-colour" to="/signup">
                         Login or Create Account
                       </NavLink>
@@ -97,20 +96,20 @@ class Header extends React.Component {
                         Log out
                       </NavLink>
                     }
-                    <NavLink className="dropdown-item" to="/account">
+                    <NavLink className="dropdown-item account" to="/account">
                       <i className="fas fa-user"></i>&ensp; Account
-                    </NavLink>
+                    </NavLink> */}
                     {/* <NavLink className="dropdown-item" to="/track">
                       <i className="fas fa-box"></i>&ensp; Track Orders
                     </NavLink> */}
                     {/* <NavLink className="dropdown-item" to="#"><i className="fas fa-heart"></i>&ensp; Saved Items</NavLink> */}
-                  </div>
-                </div>
+                  {/* </div> */}
+                {/* </div> */}
                 {/* <NavLink className="p-colour cart" to="/cart">
                   <i className="fas fa-shopping-basket"></i>
                   <span className="count">{context.state.addedItems.length}</span>
                 </NavLink> */}
-              </div>
+              {/* </div> */}
             </nav>
           </React.Fragment>
         )}

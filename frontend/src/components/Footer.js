@@ -10,7 +10,7 @@ class Footer extends React.Component {
           <div className="row">
             <div className="col-md-4">
               <img src="./asset/img/ally.png" alt="footer" />
-              <p className="text-white">We are responsible for making your what you imagined in your hearth an ecpression. We are reliable print industry with a lot of experience.</p>
+              <p className="text-white">We are responsible for making what you imagine in your heart an expression. We are a reliable print industry with a lot of experience.</p>
             </div>
             <div className="col-md-2">
               <h5 className="pt-3 p-colour pb-2">Quick Links</h5>
@@ -20,9 +20,9 @@ class Footer extends React.Component {
               {/* <Link to="/design" className="f-link">
                 Design
               </Link> */}
-              <Link to="/login" className="f-link">
+              {/* <Link to="/login" className="f-link">
                 Login
-              </Link>
+              </Link> */}
               <Link to="/about" className="f-link">
                 About
               </Link>

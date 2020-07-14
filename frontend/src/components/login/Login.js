@@ -1,31 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
 import { GlobalContext } from "../GlobalContext";
 
 class Login extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
-    const LOGIN_MUTATION = gql`
-      mutation($email: String!, $password: String!) {
-        login(email: $email, password: $password) {
-          token
-          user {
-            id
-            name
-            email
-            gender
-            address
-            phone
-          }
-        }
-      }
-    `;
-
     return (
       <GlobalContext.Consumer>
         {(context) => (
@@ -53,54 +32,44 @@ class Login extends React.Component {
                   />
                   <div className="p-5 s-tm">
                     <h2 className="p-colour text-center">Log In</h2>
-                    <Mutation mutation={LOGIN_MUTATION}>
-                      {(login, { loading, error, data }) => {
-                        //  console.log({loading, error, data})
-                        return (
-                          <form
-                            className="pl-3 pr-3"
-                            onSubmit={e => {
-                              context.login(e, login)
-                            }}
-                          >
-                            <div className="form-group">
-                              <label>Email</label>
-                              <input
-                                type="email"
-                                name=""
-                                className="form-control"
-                                placeholder="Email"
-                                onChange={context.updateEmail}
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label>Password</label>
-                              <input
-                                type="password"
-                                name=""
-                                className="form-control"
-                                placeholder="Password"
-                                onChange={context.updatePassword}
-                              />
-                            </div>
-                            <div>
-                              <button
-                                className="btn bg-brand text-light"
-                                type="submit"
-                              >
-                                Submit
-                              </button>
-                              <Link
-                                to="/signup"
-                                className="float-right p-colour"
-                              >
-                                Signup
-                              </Link>
-                            </div>
-                          </form>
-                        );
+                    <form
+                      className="pl-3 pr-3"
+                      onSubmit={(e) => {
+                        context.login(e);
                       }}
-                    </Mutation>
+                    >
+                      <div className="form-group">
+                        <label>Email</label>
+                        <input
+                          type="email"
+                          name=""
+                          className="form-control"
+                          placeholder="Email"
+                          onChange={context.updateEmail}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>Password</label>
+                        <input
+                          type="password"
+                          name=""
+                          className="form-control"
+                          placeholder="Password"
+                          onChange={context.updatePassword}
+                        />
+                      </div>
+                      <div>
+                        <button
+                          className="btn bg-brand text-light"
+                          type="submit"
+                        >
+                          Submit
+                        </button>
+                        <Link to="/signup" className="float-right p-colour">
+                          Signup
+                        </Link>
+                      </div>
+                    </form>
                     <p className="text-center errormessage">
                       {context.state.errorMessage}
                     </p>

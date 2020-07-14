@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 body{
   font-family: 'Poppins', sans-serif;
+  -webkit-appearance: none;
 }
 nav {
   .navbar-brand {
@@ -37,6 +38,13 @@ nav {
     right: 6rem;
     top: 2rem;
   }
+}
+.dropdown-item.active{
+  text-decoration: none !important;
+  background-color: #ffffff !important;
+}
+.account{
+  color: #000000 !important;
 }
 .count{
   position: absolute;
@@ -79,10 +87,18 @@ nav {
 }
 .btn-brand{
   background: $colour;
-  width: fit-content;
+  -webkit-background: $colour;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  width: max-content;
+  display: block;
+  -webkit-width: fit-content;
   color: #ffffff;
+  -webkit-color: #4d1b1b;
     &:hover{
       color: #ffffff;
+      -webkit-color: #ffffff;
     }
 }
 .item-card{
@@ -102,7 +118,7 @@ nav {
 }
 .owl-stage{
   display: flex !important;
-  justify-content: start !important;
+  justify-content: flex-start !important;
 }
 .home-owl_item{
   flex-shrink: 1 !important;

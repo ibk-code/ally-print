@@ -2,8 +2,6 @@ import React from "react";
 import Header from "../Header";
 import Affirm from "../Affirm";
 import Footer from "../Footer";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import axios from 'axios';
 import Loader from "../Loader";
 import {GlobalContext} from '../GlobalContext'
@@ -19,11 +17,11 @@ class Products extends React.Component {
     }
   }
 
-  fetchproduct = () => {
+  fetchproduct = function () {
     this.setState({loading: true})
     try {
       
-      axios.get(`http://localhost:4000/api/ally_v1/product`)
+      axios.get(`https://allyprint.herokuapp.com/api/query/product`)
       .then(res => {
         console.log(res)
         const respon = res.data.product;
@@ -48,18 +46,6 @@ componentDidMount() {
 }
 
   render() {
-    // const ProductItems = gql`
-    //   {
-    //     homeItems {
-    //       id
-    //       img
-    //       pname
-    //       pdetails
-    //       price
-    //       pcs
-    //     }
-    //   }
-    // `;
     console.log(this.state.product)
     let products;
 
@@ -87,7 +73,7 @@ componentDidMount() {
         {context => (
           <React.Fragment>
             <Header />
-            <div className="mx-auto d-margin p-5">
+            <div className="mx-auto d-margin  prod-left prod-right">
               <h2 className="h-text">All Products</h2>
               <div>
                 {products}

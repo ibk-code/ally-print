@@ -11,7 +11,7 @@ export default class AddedItem extends React.Component{
             <tr>
               <td>
                 <div className="d-flex">
-                  <img className="cart-img" alt="product-image" src={this.props.img}/>
+                  <img className="cart-img" alt="product-description" src={this.props.img}/>
                   <div className="p-desc">
                     <strong className="pl-4">{this.props.product}</strong>
                   </div>
